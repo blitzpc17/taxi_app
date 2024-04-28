@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:taxi_app/widgets/widgets.dart';
+
+import '../widgets/widgets.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
@@ -28,12 +28,12 @@ class RegisterScreen extends StatelessWidget {
                   children: [
                     Expanded(child: LayoutBuilder(
                       builder: (context, constraints) {
-                        return const Column(
+                        return Column(
                           children: [
                             SizedBox(
-                              height: 25,
+                              height: constraints.maxHeight * 0.25,
                             ),
-                            Align(
+                            const Align(
                               alignment: Alignment.centerLeft,
                               child: Icon(
                                 FontAwesomeIcons.arrowLeft,
