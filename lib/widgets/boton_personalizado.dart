@@ -66,8 +66,8 @@ class BotonPersonalizado extends StatelessWidget {
                         ),
                         width: constraints.maxWidth * 0.15,
                         height: constraints.maxHeight * 0.90,
-                        child: const Icon(
-                          FontAwesomeIcons.rightToBracket,
+                        child: Icon(
+                          icono,
                           color: Colors.black54,
                         ),
                       ),
