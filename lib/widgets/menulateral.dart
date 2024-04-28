@@ -67,7 +67,7 @@ class _MenulateralState extends State<Menulateral> {
               ),
               SizedBox(
                 width: constraints.maxWidth,
-                height: constraints.maxHeight * 0.60,
+                height: constraints.maxHeight * 0.50,
                 child: ListView(
                   padding: const EdgeInsets.all(7),
                   children: <Widget>[
@@ -123,13 +123,34 @@ class _MenulateralState extends State<Menulateral> {
               ),
               SizedBox(
                 width: constraints.maxWidth,
-                height: constraints.maxHeight * 0.10,
+                height: constraints.maxHeight * 0.20,
                 child: ListView(
                   padding: const EdgeInsets.all(7),
                   children: <Widget>[
                     Container(
                       decoration: BoxDecoration(
                           color: _seleccion == 2
+                              ? Colors.black
+                              : Colors.transparent,
+                          borderRadius: BorderRadius.circular(5)),
+                      padding: const EdgeInsets.all(8),
+                      child: ListTile(
+                        leading: const Icon(
+                          FontAwesomeIcons.circleUser,
+                          color: Colors.white,
+                          size: 20,
+                        ),
+                        title: const Text(
+                          'Perfil',
+                          style: TextStyle(color: Colors.white, fontSize: 15),
+                        ),
+                        selected: _seleccion == 2,
+                        onTap: () => selectDestination(2),
+                      ),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                          color: _seleccion == 3
                               ? Colors.black
                               : Colors.transparent,
                           borderRadius: BorderRadius.circular(5)),
@@ -144,8 +165,8 @@ class _MenulateralState extends State<Menulateral> {
                           'Cerrar sesión',
                           style: TextStyle(color: Colors.white, fontSize: 15),
                         ),
-                        selected: _seleccion == 2,
-                        onTap: () => selectDestination(2),
+                        selected: _seleccion == 3,
+                        onTap: () => selectDestination(3),
                       ),
                     ),
                   ],
