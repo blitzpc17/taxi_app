@@ -50,7 +50,8 @@ class _PerfilScreenState extends State<PerfilScreen> {
                     ),
                   ),
                   Container(
-                    padding: const EdgeInsets.all(50),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 50),
                     width: constraints.maxWidth,
                     height: constraints.maxHeight * 0.70,
                     child: LayoutBuilder(builder: (context, constraints2) {
