@@ -1,7 +1,9 @@
+
+import '../Services/services.dart';
+import '../widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import '../widgets/widgets.dart';
+import 'package:provider/provider.dart';
 
 class HistorialScreen extends StatefulWidget {
   const HistorialScreen({super.key});
@@ -29,6 +31,9 @@ class _HistorialScreenState extends State<HistorialScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    final viajesServices = Provider.of<ViajeService>(context);
+
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
