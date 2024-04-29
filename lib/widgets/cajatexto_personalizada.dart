@@ -5,7 +5,7 @@ class CajaTextoPersonalizada extends StatelessWidget {
   final String? hint;
   final String? errorMessage;
   final bool obscureText;
-  final IconData icono;
+  final IconData? icono, iconoPrefix;
   final Function(String)? onChanged;
   final String? Function(String?)? validator;
 
@@ -17,7 +17,8 @@ class CajaTextoPersonalizada extends StatelessWidget {
     this.obscureText = false,
     this.onChanged,
     this.validator,
-    required this.icono,
+    this.icono,
+    this.iconoPrefix,
   });
 
   @override
@@ -47,7 +48,8 @@ class CajaTextoPersonalizada extends StatelessWidget {
           hintText: hint,
           errorText: errorMessage,
           focusColor: colors.primary,
-          suffixIcon: Icon(icono)),
+          suffixIcon: icono == null ? Container() : Icon(icono),
+          prefix: iconoPrefix == null ? Container() : Icon(iconoPrefix)),
     );
   }
 }
