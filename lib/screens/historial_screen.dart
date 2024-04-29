@@ -1,4 +1,6 @@
 
+import 'package:taxi_app/modelo/models.dart';
+
 import '../Services/services.dart';
 import '../widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -124,10 +126,12 @@ class _HistorialScreenState extends State<HistorialScreen> {
                       return SingleChildScrollView(
                         scrollDirection: Axis.vertical,
                         child: Column(
-                          children: [
-                            tarjetaHistorial(constraints10.maxWidth,
-                                constraints10.maxHeight * 0.45, {})
-                          ],
+                         children: viajesServices.viajes.expand((item) => [
+                            _tarjetaHistorial(
+                              ancho: constraints10.maxWidth, 
+                              alto: constraints10.maxHeight*0.45, 
+                              s:item)
+                          ]).toList(),
                         ),
                       );
                     }),
@@ -140,10 +144,24 @@ class _HistorialScreenState extends State<HistorialScreen> {
   }
 
   tarjetaHistorial(ancho, alto, Map<String, dynamic> s) {
-    return Container(
+   
+  }
+}
+
+class _tarjetaHistorial extends StatelessWidget {
+
+  final double ancho;
+  final double alto ;
+  final Viaje s;
+
+  const _tarjetaHistorial({required this.ancho, required this.alto, required this.s});
+
+  @override
+  Widget build(BuildContext context) {    
+     return Container(
       width: ancho,
       height: alto,
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(5),
@@ -152,13 +170,13 @@ class _HistorialScreenState extends State<HistorialScreen> {
             color: Colors.grey.withOpacity(0.5),
             spreadRadius: 5,
             blurRadius: 7,
-            offset: Offset(0, 3), // changes position of shadow
+            offset: const Offset(0, 3), // changes position of shadow
           ),
         ],
       ),
       child: Column(
         children: [
-          const Expanded(
+          Expanded(
             flex: 4,
             child: Row(
               children: [
@@ -174,7 +192,7 @@ class _HistorialScreenState extends State<HistorialScreen> {
                 Expanded(
                   flex: 2,
                   child: Text(
-                    "Pedro Valentin Solis Rivera",
+                   s.folio,
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
                     textAlign: TextAlign.center,
                   ),
