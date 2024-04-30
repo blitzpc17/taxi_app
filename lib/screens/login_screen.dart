@@ -1,6 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import 'package:taxi_app/modelo/models.dart';
 
+import '../Services/services.dart';
 import '../widgets/widgets.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -8,6 +13,8 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
+    final usuariosService = Provider.of<UsuarioService>(context);
     var pantalla = MediaQuery.of(context).size;
 
     return Scaffold(
@@ -97,22 +104,38 @@ class LoginScreen extends StatelessWidget {
                               SizedBox(
                                 height: constraints.maxHeight * 0.10,
                               ),
-                              const Column(
+                              Column(
                                 children: [
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Text(
+                                      const Text(
                                         "¿Aun no tiene una cuenta - ",
                                         style: TextStyle(
                                             fontWeight: FontWeight.normal,
                                             color: Colors.white),
                                       ),
-                                      Text(
-                                        "Registrate",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.white),
+                                      GestureDetector(
+                                        onTap: (){
+                                          usuariosService.selectedUsuario = new Usuario(
+                                            apellidos: "", 
+                                            clave: "", 
+                                            correo: "", 
+                                            domicilio: "", 
+                                            fecha: "", 
+                                            nombres: "",   
+                                            rol:"", 
+                                            telefono: "",                                            
+                                            );
+
+                                            context.push('/register');
+                                        },                                        
+                                        child: const Text(
+                                          "Registrate",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white),
+                                        ),
                                       ),
                                     ],
                                   )

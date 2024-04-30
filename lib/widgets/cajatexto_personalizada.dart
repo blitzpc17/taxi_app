@@ -8,6 +8,7 @@ class CajaTextoPersonalizada extends StatelessWidget {
   final IconData? icono, iconoPrefix;
   final Function(String)? onChanged;
   final String? Function(String?)? validator;
+ // final String? initialValue;
 
   const CajaTextoPersonalizada({
     super.key,
@@ -19,6 +20,7 @@ class CajaTextoPersonalizada extends StatelessWidget {
     this.validator,
     this.icono,
     this.iconoPrefix,
+ //   this.initialValue
   });
 
   @override
@@ -30,9 +32,11 @@ class CajaTextoPersonalizada extends StatelessWidget {
         borderRadius: BorderRadius.circular(10));
 
     return TextFormField(
+    //  initialValue: initialValue,
       onChanged: onChanged,
       validator: validator,
       obscureText: obscureText,
+      autocorrect: false,
       decoration: InputDecoration(
           enabledBorder: border,
           focusedBorder: border.copyWith(
@@ -47,7 +51,7 @@ class CajaTextoPersonalizada extends StatelessWidget {
               color: Colors.black45, fontWeight: FontWeight.normal),
           hintText: hint,
           errorText: errorMessage,
-          focusColor: colors.primary,
+          focusColor: Colors.black,
           suffixIcon: icono == null ? Container() : Icon(icono),
           prefix: iconoPrefix == null ? Container() : Icon(iconoPrefix)),
     );

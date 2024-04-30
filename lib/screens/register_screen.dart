@@ -2,18 +2,46 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:taxi_app/Services/services.dart';
+import 'package:taxi_app/modelo/models.dart';
+import 'package:taxi_app/providers/usuario_form_provider.dart';
 
 import '../widgets/widgets.dart';
 
 class RegisterScreen extends StatelessWidget {
-  const RegisterScreen({super.key});
+ // const RegisterScreen({super.key});
+   static const name = 'register_screen';
+
+  @override
+  Widget build(BuildContext context) {
+    
+    final usuariosServices = Provider.of<UsuarioService>(context);  
+    final pantalla = MediaQuery.of(context).size;
+
+    return ChangeNotifierProvider(
+      create: (_)=>UsuarioFormProvider(usuariosServices.selectedUsuario),
+      child: _RegisterScreenBody(
+      pantalla: pantalla, 
+      usuariosServices: usuariosServices));
+
+  }
+}
+
+class _RegisterScreenBody extends StatelessWidget {
+  const _RegisterScreenBody({
+    super.key,
+    required this.pantalla,
+    required this.usuariosServices
+  });
+
+  final Size pantalla;
+  final UsuarioService usuariosServices;
 
   @override
   Widget build(BuildContext context) {
 
-    final usuariosServices = Provider.of<UsuarioService>(context);
-
-    var pantalla = MediaQuery.of(context).size;
+    final usuarioForm = Provider.of<UsuarioFormProvider>(context);
+    final usuario = usuarioForm.usuario;
+   
 
     return Scaffold(
       body: SafeArea(
@@ -81,46 +109,51 @@ class RegisterScreen extends StatelessWidget {
                             decoration: BoxDecoration(
                                 color: Colors.white70,
                                 borderRadius: BorderRadius.circular(20)),
-                            child: const Center(
+                            child: Center(
                               child: SingleChildScrollView(
                                 scrollDirection: Axis.vertical,
                                 child: Column(
                                   children: [
                                     CajaTextoPersonalizada(
-                                      label: "Nombre",
-                                      hint: "Nombre",
+                                     // initialValue: usuario.nombres,
+                                      label: "Nombre(s)",
+                                     // hint: "Nombre(s)",
                                       icono: FontAwesomeIcons.user,
                                     ),
                                     SizedBox(
                                       height: 15,
                                     ),
                                     CajaTextoPersonalizada(
-                                      label: "Apellido paterno",
-                                      hint: "Apellido paterno",
+                                    //  initialValue: usuario.apellidos,
+                                      label: "Apellidos",
+                                    //  hint: "Apellidos",
                                       icono: FontAwesomeIcons.user,
                                     ),
                                     SizedBox(
                                       height: 15,
-                                    ),
+                                    ),                                  
                                     CajaTextoPersonalizada(
-                                      label: "Apellido materno",
-                                      hint: "Apellido materno",
-                                      icono: FontAwesomeIcons.user,
-                                    ),
-                                    SizedBox(
-                                      height: 15,
-                                    ),
-                                    CajaTextoPersonalizada(
-                                      label: "Correo electronico",
-                                      hint: "Correo electronico",
+                                   //   initialValue: usuario.correo,
+                                      label: "Correo electrónico",
+                                    //  hint: "Correo electrónico",
                                       icono: FontAwesomeIcons.envelope,
                                     ),
                                     SizedBox(
                                       height: 15,
                                     ),
+                                     CajaTextoPersonalizada(
+                                   //   initialValue: usuario.correo,
+                                      label: "Contraseña",
+                                    //  hint: "Correo electrónico",
+                                      icono: FontAwesomeIcons.lock,
+                                    ),
+                                    SizedBox(
+                                      height: 15,
+                                    ),
                                     CajaTextoPersonalizada(
+                                  //    initialValue: usuario.telefono,
                                       label: "Teléfono",
-                                      hint: "Teléfono",
+                                     // hint: "Teléfono",
                                       icono: FontAwesomeIcons.phone,
                                     ),
                                   ],
@@ -140,8 +173,11 @@ class RegisterScreen extends StatelessWidget {
                                 ancho: constraints.maxWidth * 0.75,
                                 alto: constraints.maxHeight * 0.35,
                                 color: Colors.black54,
-                                icono: FontAwesomeIcons.a,
+                                icono: FontAwesomeIcons.paperPlane,
                                 texto: "Registrarse",
+                                onChanged: () async {
+                                 await usuariosServices.saveOrCreateUsuario(usuarioForm.usuario);
+                                },
                               )
                             ],
                           );

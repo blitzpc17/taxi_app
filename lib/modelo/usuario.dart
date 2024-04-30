@@ -12,6 +12,7 @@ class Usuario {
     String? placa;
     String rol;
     String telefono;
+    String? id;
 
     Usuario({
         required this.apellidos,
@@ -25,6 +26,7 @@ class Usuario {
         this.placa,
         required this.rol,
         required this.telefono,
+        this.id
     });
 
     factory Usuario.fromJson(String str) => Usuario.fromMap(json.decode(str));
@@ -43,6 +45,7 @@ class Usuario {
         placa: json["Placa"],
         rol: json["Rol"],
         telefono: json["Telefono"],
+        id: json["Id"]
     );
 
     Map<String, dynamic> toMap() => {
@@ -57,5 +60,23 @@ class Usuario {
         "Placa": placa,
         "Rol": rol,
         "Telefono": telefono,
+        "Id":id
     };
+
+    Usuario copy()=>Usuario(
+      apellidos:this.apellidos,
+      avatar:this. avatar,
+      clave:this.clave,
+      correo:this.correo,
+      domicilio:this.domicilio,
+      fecha:this.fecha,
+      modelo:this.modelo,
+      nombres:this.nombres,
+      placa:this. placa,
+      rol:this.rol,
+      telefono:this.telefono,
+      id: id
+    );
+
+
 }

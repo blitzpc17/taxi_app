@@ -4,10 +4,15 @@ import 'package:taxi_app/screens/perfil_screen.dart';
 import 'package:taxi_app/screens/screens.dart';
 
 final appRouter = GoRouter(routes: [
-  GoRoute(path: '/home', builder: (context, state) => const HomeScreen()),
-  GoRoute(path: '/', builder: (context, state) => const SolicitarViajeScreen()),
   GoRoute(
-      path: '/register', builder: (context, state) => const RegisterScreen()),
+    path: '/home', 
+    name:HomeScreen.name,
+    builder: (context, state) => const HomeScreen()),
+  GoRoute(path: '/', builder: (context, state) => PerfilScreen()),
+  GoRoute(
+      path: '/register', 
+      name: RegisterScreen.name,
+      builder: (context, state) => RegisterScreen()),
   GoRoute(path: '/perfil', builder: (context, state) => const PerfilScreen()),
   GoRoute(
       path: '/historial', builder: (context, state) => const HistorialScreen()),

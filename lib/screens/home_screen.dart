@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:taxi_app/widgets/widgets.dart';
 
 class HomeScreen extends StatelessWidget {
+  static const name = 'home_screen';
   const HomeScreen({super.key});
 
   @override

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
+import 'package:taxi_app/Services/services.dart';
 
 import '../widgets/widgets.dart';
 
@@ -16,6 +18,8 @@ class _PerfilScreenState extends State<PerfilScreen> {
   @override
   Widget build(BuildContext context) {
     var pantalla = MediaQuery.of(context).size;
+
+    final usuariosServices = Provider.of<UsuarioService>(context);
 
     return SafeArea(
       child: Scaffold(
@@ -77,7 +81,7 @@ class _PerfilScreenState extends State<PerfilScreen> {
                                 ),
                               ],
                             ),
-                            child: const Center(
+                            child:  Center(
                               child: SingleChildScrollView(
                                 scrollDirection: Axis.vertical,
                                 child: Column(
@@ -129,6 +133,12 @@ class _PerfilScreenState extends State<PerfilScreen> {
                                       hint: "Teléfono",
                                       icono: FontAwesomeIcons.phone,
                                     ),
+                                      SizedBox(
+                                      height: 15,
+                                    ),
+                                    TextFormField(
+                                      autocorrect: false,
+                                    )
                                   ],
                                 ),
                               ),
@@ -156,6 +166,7 @@ class _PerfilScreenState extends State<PerfilScreen> {
                               setState(() {
                                 editando = !editando;
                               });
+                              /*usuariosServices.selectedUsuario = */
                             },
                           ),
                           SizedBox(
