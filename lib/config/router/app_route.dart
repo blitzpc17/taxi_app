@@ -8,7 +8,11 @@ final appRouter = GoRouter(routes: [
       path: '/home',
       name: HomeScreen.name,
       builder: (context, state) => const HomeScreen()),
-  GoRoute(path: '/', builder: (context, state) => RegisterScreen()),
+  GoRoute(
+      path: '/',
+      builder: (context, state) => const SeleccionUbicacionScreen(
+            textoTitulo: "",
+          )),
   GoRoute(
       path: '/register',
       name: RegisterScreen.name,
@@ -19,4 +23,9 @@ final appRouter = GoRouter(routes: [
   GoRoute(
       path: '/solicitudviaje',
       builder: (context, state) => const SolicitarViajeScreen()),
+  GoRoute(
+      path: '/seleccionubicacion',
+      builder: (context, state) => const SeleccionUbicacionScreen(
+            textoTitulo: "",
+          )),
 ]);

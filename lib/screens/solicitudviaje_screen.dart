@@ -80,27 +80,41 @@ class _SolicitarViajeScreenState extends State<SolicitarViajeScreen> {
                         ),
                         SizedBox(
                           width: constraints5.maxWidth,
-                          height: constraints5.maxHeight * 0.18,
-                          child: const Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Expanded(
-                                child: CajaTextoPersonalizada(
-                                    label: "Tu ubicación actual",
-                                    hint: "Tu ubicación actual",
-                                    iconoPrefix: FontAwesomeIcons.locationDot,
-                                    icono: FontAwesomeIcons.locationDot),
-                              ),
-                              Expanded(
-                                child: CajaTextoPersonalizada(
-                                    label:
-                                        "Agrega aqui la dirección de destino",
-                                    hint: "Agrega aqui la dirección de destino",
-                                    iconoPrefix: FontAwesomeIcons.flag,
-                                    icono: FontAwesomeIcons.flag),
-                              )
-                            ],
-                          ),
+                          height: constraints5.maxHeight * 0.25,
+                          child:
+                              LayoutBuilder(builder: (context, constraints11) {
+                            return Column(
+                              children: [
+                                BotonPersonalizado(
+                                    ancho: constraints11.maxWidth,
+                                    alto: constraints11.maxHeight * 0.35,
+                                    color: Colors.black,
+                                    altoIconos: 0.50,
+                                    anchoIconos: 0.10,
+                                    deshabFondoIconos: true,
+                                    colorIconos: Colors.grey,
+                                    icono: FontAwesomeIcons.locationDot,
+                                    texto: "Selecciona dirección de origen",
+                                    iconoAux: FontAwesomeIcons.shareFromSquare,
+                                    onChanged: null),
+                                SizedBox(
+                                  height: constraints11.maxHeight * 0.05,
+                                ),
+                                BotonPersonalizado(
+                                    ancho: constraints11.maxWidth,
+                                    alto: constraints11.maxHeight * 0.35,
+                                    color: Colors.black,
+                                    altoIconos: 0.50,
+                                    anchoIconos: 0.10,
+                                    colorIconos: Colors.grey,
+                                    deshabFondoIconos: true,
+                                    icono: FontAwesomeIcons.flag,
+                                    iconoAux: FontAwesomeIcons.shareFromSquare,
+                                    texto: "Selecciona dirección de destino",
+                                    onChanged: null)
+                              ],
+                            );
+                          }),
                         ),
                         Align(
                           alignment: Alignment.bottomCenter,

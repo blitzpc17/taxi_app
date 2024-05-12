@@ -8,6 +8,11 @@ class BotonPersonalizado extends StatelessWidget {
   final IconData? icono;
   final Color color;
   final Function()? onChanged;
+  final IconData? iconoAux;
+  final double altoIconos;
+  final double anchoIconos;
+  final bool deshabFondoIconos;
+  final Color? colorIconos;
 
   const BotonPersonalizado({
     super.key,
@@ -17,6 +22,11 @@ class BotonPersonalizado extends StatelessWidget {
     this.icono = FontAwesomeIcons.a,
     this.onChanged,
     this.color = Colors.blue,
+    this.iconoAux,
+    this.altoIconos = 0.90,
+    this.anchoIconos = 0.15,
+    this.deshabFondoIconos = false,
+    this.colorIconos = Colors.black54,
   });
 
   @override
@@ -62,13 +72,34 @@ class BotonPersonalizado extends StatelessWidget {
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: Colors.white,
+                          color: deshabFondoIconos
+                              ? Colors.transparent
+                              : Colors.white,
                         ),
-                        width: constraints.maxWidth * 0.15,
-                        height: constraints.maxHeight * 0.90,
+                        width: constraints.maxWidth * anchoIconos,
+                        height: constraints.maxHeight * altoIconos,
                         child: Icon(
                           icono,
-                          color: Colors.black54,
+                          color: colorIconos ?? Colors.black54,
+                        ),
+                      ),
+                    ),
+              iconoAux == null
+                  ? Container()
+                  : Align(
+                      alignment: Alignment.centerRight,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: deshabFondoIconos
+                              ? Colors.transparent
+                              : Colors.white,
+                        ),
+                        width: constraints.maxWidth * anchoIconos,
+                        height: constraints.maxHeight * altoIconos,
+                        child: Icon(
+                          iconoAux,
+                          color: colorIconos ?? Colors.black54,
                         ),
                       ),
                     )

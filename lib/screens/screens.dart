@@ -5,3 +5,4 @@ export 'package:taxi_app/screens/solicitudviaje_screen.dart';
 export 'package:taxi_app/screens/perfil_screen.dart';
 export 'package:taxi_app/screens/historial_screen.dart';
 export 'package:taxi_app/screens/viajeschofer_screen.dart';
+export 'package:taxi_app/screens/seleccionubicacion_screen.dart';
